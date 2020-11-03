@@ -64,10 +64,13 @@ void setup()
     }
 }
 
+int lastCmd;
 
 void loop()
 {
     char recvChar;
+
+    bool hasKey = false;
 
     // while(1)
     {
@@ -75,16 +78,8 @@ void loop()
         {
             recvChar = blueToothSerial.read();
             Serial.print(recvChar);
-        }
 
-        if(Serial.available())            // Check if there's any data sent from the local serial terminal. You can add the other applications here.
-        {
-            recvChar  = Serial.read();
-            Serial.print(recvChar);
-            blueToothSerial.print(recvChar);
-
-            // convert key to movement
-            bool hasKey = false;
+             // convert key to movement
             
             // forward
             if (recvChar == '1') {
@@ -102,23 +97,30 @@ void loop()
 
             // left
             if (recvChar == '3') {
-              servoLeft.writeMicroseconds(1700);
-              servoRight.writeMicroseconds(1500);
+                            servoLeft.writeMicroseconds(1000);
+              servoRight.writeMicroseconds(1000);
+ 
               hasKey = true;
             }
 
             // right
             if (recvChar == '4') {
-              servoLeft.writeMicroseconds(1500);
-              servoRight.writeMicroseconds(1300);
+             servoLeft.writeMicroseconds(1700);
+              servoRight.writeMicroseconds(1700);
               hasKey = true;
-            }
+            }        
+        }
 
             if (!hasKey) {
               servoLeft.writeMicroseconds(1500);
               servoRight.writeMicroseconds(1500);
             }
             
+        if(Serial.available())            // Check if there's any data sent from the local serial terminal. You can add the other applications here.
+        {
+            recvChar  = Serial.read();
+            Serial.print(recvChar);
+            blueToothSerial.print(recvChar);    
         }
     }
 }
