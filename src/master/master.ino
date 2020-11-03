@@ -69,7 +69,9 @@ void loop()
   x = analogRead(joystick_x);
   y = analogRead(joystick_y);
   z = digitalRead(joystick_z);
-  /*
+  
+
+/*
   Serial.print("x: ");
   Serial.print(x);
   Serial.print(" Y: ");
@@ -77,7 +79,7 @@ void loop()
   Serial.print(" Z: ");
   Serial.print(z);
   Serial.print("\n");
-  */
+*/
   
   char recvChar;
   
@@ -93,6 +95,28 @@ void loop()
     Serial.print(recvChar);
     blueToothSerial.print(recvChar);
   }
+
+
+  // go forward
+  if (y > 900) {
+     blueToothSerial.print('1');
+  }
+
+  // Move backwards
+  if (y < 10) {
+     blueToothSerial.print('2');
+  }
+  
+  // go left
+  if (x < 10) {
+      blueToothSerial.print('3');
+  }
+
+  // go right
+  if (x > 900) {
+     blueToothSerial.print('4');
+  }
+  
 }
 
 void setupBlueToothConnection()

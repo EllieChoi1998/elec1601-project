@@ -1,4 +1,9 @@
 #include <SoftwareSerial.h>   //Software Serial Port
+#include <Servo.h>
+
+// movement
+Servo servoLeft;
+Servo servoRight;
 
 #define RxD 7
 #define TxD 6
@@ -30,6 +35,9 @@ void setup()
 {
     Serial.begin(9600);
     blueToothSerial.begin(38400);                    // Set Bluetooth module to default baud rate 38400
+    
+    servoLeft.attach(13);
+    servoRight.attach(12);
     
     pinMode(RxD, INPUT);
     pinMode(TxD, OUTPUT);
@@ -74,6 +82,33 @@ void loop()
             recvChar  = Serial.read();
             Serial.print(recvChar);
             blueToothSerial.print(recvChar);
+
+            // convert key to movement
+            bool hasKey = false;
+
+            servoLeft.writeMicroseconds(1500);  // 1.3 ms full speed clockwise
+            
+            // forward
+            if (recvChar == '1') {
+              hasKey = true;
+            }
+
+            // back
+            if (recvChar == '2') {
+              hasKey = true;
+            }
+
+            // left
+            if (recvChar == '3') {
+              hasKey = true;
+            }
+
+            // right
+            if (recvChar == '4') {
+              hasKey = true;
+            }
+            
+            
         }
     }
 }
