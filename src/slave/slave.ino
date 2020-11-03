@@ -85,29 +85,39 @@ void loop()
 
             // convert key to movement
             bool hasKey = false;
-
-            servoLeft.writeMicroseconds(1500);  // 1.3 ms full speed clockwise
             
             // forward
             if (recvChar == '1') {
+              servoLeft.writeMicroseconds(1700);
+              servoRight.writeMicroseconds(1300);
               hasKey = true;
             }
 
             // back
             if (recvChar == '2') {
+              servoLeft.writeMicroseconds(1300);
+              servoRight.writeMicroseconds(1700);
               hasKey = true;
             }
 
             // left
             if (recvChar == '3') {
+              servoLeft.writeMicroseconds(1700);
+              servoRight.writeMicroseconds(1500);
               hasKey = true;
             }
 
             // right
             if (recvChar == '4') {
+              servoLeft.writeMicroseconds(1500);
+              servoRight.writeMicroseconds(1300);
               hasKey = true;
             }
-            
+
+            if (!hasKey) {
+              servoLeft.writeMicroseconds(1500);
+              servoRight.writeMicroseconds(1500);
+            }
             
         }
     }
