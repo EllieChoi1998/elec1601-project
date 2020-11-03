@@ -97,8 +97,8 @@ void loop()
 
             // left
             if (recvChar == '3') {
-                            servoLeft.writeMicroseconds(1000);
-              servoRight.writeMicroseconds(1000);
+	    	servoLeft.writeMicroseconds(1000);
+	      	servoRight.writeMicroseconds(1000);
  
               hasKey = true;
             }
