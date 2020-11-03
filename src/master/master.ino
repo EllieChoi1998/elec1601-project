@@ -69,6 +69,7 @@ void loop()
   x = analogRead(joystick_x);
   y = analogRead(joystick_y);
   z = digitalRead(joystick_z);
+  /*
   Serial.print("x: ");
   Serial.print(x);
   Serial.print(" Y: ");
@@ -76,7 +77,8 @@ void loop()
   Serial.print(" Z: ");
   Serial.print(z);
   Serial.print("\n");
-
+  */
+  
   char recvChar;
   
   if (blueToothSerial.available()) // Check if there's any data sent from the remote Bluetooth shield

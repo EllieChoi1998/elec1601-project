@@ -61,7 +61,7 @@ void loop()
 {
     char recvChar;
 
-    while(1)
+    // while(1)
     {
         if(blueToothSerial.available())   // Check if there's any data sent from the remote Bluetooth shield
         {
